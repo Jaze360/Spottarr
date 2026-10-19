@@ -16,7 +16,9 @@ internal static class DbContextOptionsBuilderExtensions
         {
             DatabaseProvider.Sqlite => builder
                 .UseSqlite(
-                    $"Data Source={DbPathHelper.GetDbPath()}",
+                    string.IsNullOrWhiteSpace(options.ConnectionString)
+                        ? $"Data Source={DbPathHelper.GetDbPath()}"
+                        : options.ConnectionString,
                     x => x.MigrationsAssembly("Spottarr.Data.Sqlite")
                 )
                 .UseBulkInsertSqlite(),

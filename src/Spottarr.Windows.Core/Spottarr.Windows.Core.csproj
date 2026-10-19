@@ -1,0 +1,11 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net10.0-windows</TargetFramework>
+    <EnableNETAnalyzers>false</EnableNETAnalyzers>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Quartz" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" />
+    <PackageReference Include="System.Security.Cryptography.ProtectedData" />
+  </ItemGroup>
+</Project>

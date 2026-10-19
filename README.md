@@ -1,4 +1,6 @@
 # Spottarr
+
+Windows native GUI setup (fork preview): see [Windows setup](docs/windows-setup.md).
 _A modern spotnet client and index for your *Arrs._
 
 [![Docker](https://img.shields.io/docker/v/spottarr/spottarr?logo=docker&logoColor=ffffff&sort=semver&color=7cb100)](https://hub.docker.com/r/spottarr/spottarr)
