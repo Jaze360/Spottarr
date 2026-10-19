@@ -1,0 +1,27 @@
+name: Windows native preview
+on:
+  workflow_dispatch:
+  push:
+    branches: [feature/windows-configurator]
+  pull_request:
+    paths: ['src/**', 'tests/**', 'windows/**', '.github/workflows/windows.yml', 'Directory.*.props', 'global.json', 'appsettings*.json']
+permissions:
+  contents: read
+jobs:
+  windows:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-dotnet@v6
+        with:
+          global-json-file: global.json
+      - name: Build, test and package
+        shell: pwsh
+        run: ./windows/Build.ps1 -OutputDirectory "$env:RUNNER_TEMP/spottarr-output" -InnoCompiler 'C:\Program Files (x86)\Inno Setup 6\ISCC.exe'
+      - uses: actions/upload-artifact@v4
+        with:
+          name: Spottarr-Windows-preview
+          path: |
+            ${{ runner.temp }}/spottarr-output/*.zip
+            ${{ runner.temp }}/spottarr-output/*.exe
+            ${{ runner.temp }}/spottarr-output/SHA256SUMS.txt
